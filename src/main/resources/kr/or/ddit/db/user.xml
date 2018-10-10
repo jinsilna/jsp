@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+	<!-- resultType = UserVo의 패키지 , 클래스명 -->
+	<select id="selectUserAll" resultType="userVo">
+		<!-- ; 붙히면 에러 -->
+		select * from jspuser
+	</select>
+
+
+	<select id="selectUser" resultType="userVo"
+		parameterType="String">
+		select *
+		from jspuser
+		where userid = #{userId}
+	</select>
+
+	<select id="selectUserByVo" resultType="userVo"
+		parameterType="userVo">
+		select *
+		from jspuser
+		where userid = #{userId}
+		<!-- #{userId} ==> Vo안에서 userId 라고 줬기 때문에 userid라고 하면 오류가뜬다. -->
+	</select>
+	
+	<select id="selectUserPageList" resultType="pageVo"
+		parameterType="int">
+		select *
+ 		from 
+		(select rownum rnum, jspuser.*
+		 from jspuser
+		order by userId)
+		where rnum between #{page}*#{pageSize}-(#{pageSize}-1)
+               and #{page}*#{pageSize};
+		
+	</select>
+
+</mapper>
