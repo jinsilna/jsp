@@ -23,9 +23,9 @@
       </dataSource>
     </environment>
   </environments>
+  
   <mappers>
     <mapper resource="kr/or/ddit/db/temp.xml"/>
     <mapper resource="kr/or/ddit/db/user.xml"/>
-    
   </mappers>
 </configuration>

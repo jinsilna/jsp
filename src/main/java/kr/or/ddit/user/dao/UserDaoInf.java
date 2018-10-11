@@ -12,6 +12,14 @@ public interface UserDaoInf {
 	
 	UserVo selectUserByVo(UserVo userVo);
 	
-	PageVo slectUserPageList(PageVo pageVo);
+	List<UserVo> selectUserPageList(PageVo pageVo);
 	
+	/**
+	 * Method : getUserCnt
+	 * 작성자 : pc07
+	 * 변경이력 :
+	 * @return
+	 * Method 설명 : 사용자 전체 건수 조회 
+	 */
+	int getUserCnt();
 }

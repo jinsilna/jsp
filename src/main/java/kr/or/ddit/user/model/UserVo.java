@@ -12,10 +12,19 @@ public class UserVo {
 	private String email;
 	private String tel;
 	private Date birth;
-	private String profle;
+	private String profile;
 	private String alias;
+	private int    rnum;
 	
 	
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+
 	public String getPass() {
 		return pass;
 	}
@@ -64,12 +73,12 @@ public class UserVo {
 		this.tel = tel;
 	}
 
-	public String getProfle() {
-		return profle;
+	public String getProfile() {
+		return profile;
 	}
 
-	public void setProfle(String profle) {
-		this.profle = profle;
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 
 	// 기본생성자를 명시적으로 생성하는것이 나중에 에러 방지에 좋다. 
@@ -106,7 +115,8 @@ public class UserVo {
 		return "UserVo [userId=" + userId + ", name=" + name + ", pass=" + pass
 				+ ", add1=" + add1 + ", add2=" + add2 + ", zip=" + zip
 				+ ", email=" + email + ", tel=" + tel + ", birth=" + birth
-				+ ", profle=" + profle + ", alias=" + alias + "]";
+				+ ", profle=" + profile + ", alias=" + alias + ", rnum=" + rnum
+				+ "]";
 		}
 	}
 

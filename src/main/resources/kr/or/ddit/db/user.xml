@@ -10,7 +10,6 @@
 		select * from jspuser
 	</select>
 
-
 	<select id="selectUser" resultType="userVo"
 		parameterType="String">
 		select *
@@ -26,16 +25,27 @@
 		<!-- #{userId} ==> Vo안에서 userId 라고 줬기 때문에 userid라고 하면 오류가뜬다. -->
 	</select>
 	
-	<select id="selectUserPageList" resultType="pageVo"
-		parameterType="int">
-		select *
- 		from 
-		(select rownum rnum, jspuser.*
-		 from jspuser
-		order by userId)
-		where rnum between #{page}*#{pageSize}-(#{pageSize}-1)
-               and #{page}*#{pageSize};
+	<!-- resultType :데이터베이스 결과데이터를 객체에 로드하는 방법을 정의하는 엘리먼트
+	  parameterType   -->
+	<select id="selectUserPageList" resultType="userVo"
+		parameterType="pageVo">
 		
+		select * 
+		from
+		(select rownum rnum,a.*       
+		from
+		(select jspuser.* 
+		from jspuser
+		order by userid)a)
+		where rnum between #{page}*#{pageSize}-(#{pageSize}-1)
+               and #{page}*#{pageSize}
+
 	</select>
+	
+	
+	<select id="getUserCnt" resultType="int">
+		select count (*)
+		from jspuser
+	 </select>
 
 </mapper>
