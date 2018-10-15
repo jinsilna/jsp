@@ -59,6 +59,9 @@
 					<th>사용자 이름</th>
 					<th>생일</th>
 				</tr>
+				
+				
+				
 				<!-- userList loop 이용하여 출력하기  -->
 				<% List<UserVo> userList = (List<UserVo>)request.getAttribute("userPageList");%>
 				
@@ -68,13 +71,13 @@
 					<td><%=user.getRnum() %></td>
 					<td><%=user.getUserId()%></td>
 					<td><%=user.getName()%></td>
-					<td><%=user.getBirth()%></td>
+					<td><%=user.getBirthRomat(user.getBirth())%></td>
 				<%} %>
 				</tr>
 			</table>
 		</div>
 
-		<a class="btn btn-default pull-right">사용자 등록</a>
+		<a class="btn btn-default pull-right" href = "/userForm">사용자 등록</a>
 
 		<div class="text-center">
 			<ul class="pagination">

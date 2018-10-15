@@ -1,4 +1,4 @@
-package kr.or.ddit.dtc;
+package kr.or.ddit.etc;
 
 import static org.junit.Assert.*;
 

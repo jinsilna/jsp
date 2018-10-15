@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import kr.or.ddit.user.dao.UserDao;
-import kr.or.ddit.user.model.PageVo;
 import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.util.PageVo;
 
 public class UserService implements UserServiceInf {
 	    UserDao userdao = new UserDao();
@@ -50,7 +50,27 @@ public class UserService implements UserServiceInf {
 			
 			return resultMap;
 		}
+		@Override
+		public int insertUser(UserVo userVo) {
+			// TODO Auto-generated method stub
+			return userdao.insertUser(userVo);
+		}
+		@Override
+		public int getUserCnt() {
+			// TODO Auto-generated method stub
+			return userdao.getUserCnt();
+		}
+		@Override
+		public int deleteUser(String userId) {
+			// TODO Auto-generated method stub
+			return userdao.deleteUser(userId);
+		}
 	
+		@Override
+		public int updateUser(UserVo userVo) {
+		// TODO Auto-generated method stub
+		return userdao.updateUser(userVo);
+		}
 }
 
 

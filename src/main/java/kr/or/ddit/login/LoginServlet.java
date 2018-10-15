@@ -97,6 +97,10 @@ public class LoginServlet extends HttpServlet{
 		}else{
 			resp.sendRedirect("login/login.jsp"); // 폴더 밖이라 폴더까지 적어주는것.
 
+			
+			
+			
+			
 		}
 	}
 

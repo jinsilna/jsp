@@ -3,8 +3,8 @@ package kr.or.ddit.user.dao;
 import java.util.List;
 
 import kr.or.ddit.db.SqlFactoryBuilder;
-import kr.or.ddit.user.model.PageVo;
 import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.util.PageVo;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
@@ -78,6 +78,69 @@ public class UserDao implements UserDaoInf{
 		session.close();
 		
 		return totalUserCnt;
+	}
+
+	/**
+	 * Method : insertUser
+	 * 작성자 : pc07
+	 * 변경이력 :
+	 * @param userVo
+	 * @return
+	 * Method 설명 : 사용자 등록 
+	 */
+	@Override
+	public int insertUser(UserVo userVo) {
+		SqlSessionFactory factory = SqlFactoryBuilder.getSqlSessionFactory();
+		SqlSession session = factory.openSession();
+	
+		int insertUserCnt = session.insert("user.insertUser",userVo);
+		
+		session.commit(); // 커밋 반드시
+		session.close();
+	
+		return insertUserCnt;
+	}
+
+	/**
+	 * Method : deleteUser
+	 * 작성자 : pc07
+	 * 변경이력 :
+	 * @param userId
+	 * @return
+	 * Method 설명 : 사용자 삭제 
+	 */
+	@Override
+	public int deleteUser(String userId) {
+		SqlSessionFactory factory = SqlFactoryBuilder.getSqlSessionFactory();
+		SqlSession session = factory.openSession();
+		
+		int deleteUserCnt = session.delete("user.deleteUser",userId);
+		
+		session.commit(); // 커밋 반드시
+		session.close();
+	
+		return deleteUserCnt;
+	}
+	
+
+	/**
+	 * Method : updateUser
+	 * 작성자 : pc07
+	 * 변경이력 :
+	 * @param userId
+	 * @return
+	 * Method 설명 : 사용자 수정 
+	 */
+	@Override
+	public int updateUser(UserVo userVo) {
+		SqlSessionFactory factory = SqlFactoryBuilder.getSqlSessionFactory();
+		SqlSession session = factory.openSession();
+		
+		int updateUserCnt = session.update("user.updateUser",userVo);
+		session.commit();
+		session.close();
+		
+		return updateUserCnt;
 	}
 	
 }

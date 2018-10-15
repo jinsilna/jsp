@@ -8,7 +8,7 @@
 	
 	<typeAliases>
 	  <typeAlias type="kr.or.ddit.user.model.UserVo" alias="userVo"/>
-	  <typeAlias type="kr.or.ddit.user.model.PageVo" alias="pageVo"/>
+	  <typeAlias type="kr.or.ddit.util.PageVo" alias="pageVo"/>
 	  
 	</typeAliases>
   

@@ -3,12 +3,14 @@ package kr.or.ddit.user.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
 import kr.or.ddit.user.dao.UserDao;
-import kr.or.ddit.user.model.PageVo;
 import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.util.PageVo;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -18,7 +20,13 @@ import org.junit.Test;
 
 public class UserServiceTest {
 	private UserServiceInf userService;
-
+private final String NATRUE = "natrue";
+	
+	@Before
+	public void setup(){
+		userService = new UserService();
+		userService.deleteUser(NATRUE);
+	}
 	/* junit 실행주기 
 
 	    @BeforeClass이 적용된 메소드 실행 (최초 1회) - 반드시 static 메소드로 선언 
@@ -102,6 +110,8 @@ public class UserServiceTest {
 		/***Then***/
 
 		assertNotNull(userVo);
+		
+		
 		assertEquals("브라운", userVo.getName());
 		// 예상값 , 결과값 
 		assertEquals("brown", userVo.getUserId());
@@ -121,10 +131,60 @@ public class UserServiceTest {
 		int pageCnt = (Integer)resultMap.get("pageCnt");
 		
 		//	assertEquals(1, pagevo.getPage());
-		assertEquals(10, pagevo.getPageSize());
+		assertEquals(10, userList.size());
 		assertEquals(11, pageCnt);
-
-
 	}
+	/**
+	 * Method : getUserCntTest
+	 * 작성자 : pc07
+	 * 변경이력 :
+	 * Method 설명 : 사용자 전체 건수 조회 테스트 
+	 */
+	@Test
+	public void getUserCntTest(){
+		
+		/***Given***/
+		
 
+		/***When***/
+		int totalUserCnt = userService.getUserCnt();
+		
+		/***Then***/
+		//assertEquals(105, totalUserCnt);
+	}
+	
+	
+
+	@Test
+	public void insertUserTest(){
+		
+		/***Given***/
+		//userVo 준비
+		UserVo userVo = new UserVo();
+		
+		userVo.setUserId("natrue");
+		userVo.setPass  ("jinsilna");
+		userVo.setName  ("너진실");
+		userVo.setAdd1  ("addr1");
+		userVo.setAdd2 ("addr2");
+		userVo.setZip   ("zip");
+		GregorianCalendar gc = new GregorianCalendar(2018,7,8);
+		userVo.setBirth(new Date(gc.getTimeInMillis()));
+		userVo.setEmail ("email");
+		userVo.setTel   ("tel");
+		      
+
+		/***When***/
+		// userDao.insertUser()
+		int cnt = userService.insertUser(userVo);
+		
+		/***Then***/
+		// 입력 건수 비교
+		
+		assertEquals(1, cnt);
+		
+		// 필요 X 
+		//userDao.deleteUser("userId");
+		}
+		
 }

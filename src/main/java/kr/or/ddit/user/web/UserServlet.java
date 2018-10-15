@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.ddit.user.model.PageVo;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserService;
 import kr.or.ddit.user.service.UserServiceInf;
+import kr.or.ddit.util.PageVo;
 
 /**
  * Servlet implementation class UserServlet
@@ -39,6 +39,7 @@ public class UserServlet extends HttpServlet {
 		// 사용자 상세 조회
 		else if(uri.equals("/userDetail"))
 			userDetail(request,response);
+	
 	}
 
 	// 사용자 상세 조회 메소드
@@ -142,6 +143,8 @@ public class UserServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/user/userAllList.jsp");
 		rd.forward(request, response);
 	}
+	
+	
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
