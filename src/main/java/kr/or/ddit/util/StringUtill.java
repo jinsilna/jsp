@@ -1,5 +1,7 @@
 package kr.or.ddit.util;
 
+import static org.junit.Assert.assertEquals;
+
 public class StringUtill {
 	/**
 	 * Method : getFileNameFormHeader
@@ -19,7 +21,23 @@ public class StringUtill {
 		}
 		return fileName;
 	}
+
+	public static String getCookie(String cookieString, String cookieName) {
+		
+		// "remember=Y; userId=brown; etc=test";
+		String[] splists = cookieString.split("; ");
+		String cookie = "";
+		
+		for(String str : splists){
+			if(str.startsWith(cookieName + "="))
+				//filename="brown.png"
+				cookie = str.substring((cookieName + "=").length());
+		}
+		return cookie;
+	}
 }
+
+
 
 
 

@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +28,7 @@ public class LoginServlet extends HttpServlet{
 
 	//private final String USERID = "brown"; 
 	//private final String PASSWORD = "pass1234";
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -36,12 +37,46 @@ public class LoginServlet extends HttpServlet{
 		   2. DB에서 조회해온 아이디, 비밀번호를 체크한다.
 		   3-1. 일치할 경우 main.jsp로 이동
 		   3-2. 일치하지 않을 경우  login.jsp로 이동 
-		   
+
 		   pom.xml에서 oracle dependecy scope 삭제 
-		*/
+		 */
 		//1.
 		String userId =  req.getParameter("userId");
+		
 		String password = req.getParameter("password");
+		String rememberMe = req.getParameter("remember-me");
+		System.out.println("remember-me : " + rememberMe);
+		// remember-me 파라미터를 받아서 syso으로 출력
+
+		// rememberMe == null : 아이디 기억 사용 안함 
+		if(rememberMe == null){
+			// rememberMe == null : 아이디 기억 사용 
+			Cookie[] cookies = req.getCookies();
+			for(Cookie cookie : cookies){
+				// cookie 이름이 remember, userId 일경우 
+				// maxage -1 설정하여 쿠키를 유효하지 않도록  설정하기  
+				System.out.println(cookie.getName());
+				if(cookie.getName().equals("remember")||
+						cookie.getName().equals("userId")){
+					//-1 : 브라우저 재시작시 쿠키 삭제 변경 
+					// 0 ㅣ  바로 삭제 
+					cookie.setMaxAge(0);
+					resp.addCookie(cookie); // response에 cookie 넣어줘야 위에 maxage가 먹힘 
+				}
+			}
+			
+		}else{ 
+			// response 객체에 cookie 저장 
+			Cookie cookie = new Cookie("remember","Y");
+			Cookie userIdCookie = new Cookie("userId", userId);
+			resp.addCookie(cookie);
+			resp.addCookie(userIdCookie);
+			
+			// cookie.setMaxAge(-1);
+			// cookie.setMaxAge(60*60*24);
+			
+		}
+
 
 		// 2. DB에서 조회한 아이디 
 		// DB대신 상수로 대체했던걸 DB로 대체하기 
@@ -61,26 +96,26 @@ public class LoginServlet extends HttpServlet{
 		// userId.equals(uservo.getUserId()) == 이것은 안써도된다 위에서 동일한지 비교했음.
 		if(uservo!= null && password.equals(uservo.getPass())){
 			// resp.sendRedirect("main.jsp");
-			
+
 			//1. session에 사용자 정보 설정 
 			/*UserVo userVo = new UserVo();
 			userVo.setUserId(userId);
 			userVo.setName("브라운");
 			userVo.setAlias("곰");
 			userVo.setBirth(new Date());
-			*/
+			 */
 			// 2. main.jsp 
 			// body영역에 
 			// 이름 [별명]
-			
+
 			HttpSession session = req.getSession();
 			session.setAttribute("userVo",uservo);
-			
+
 			/*
 			    main.jsp null이 나왔을 경우 == null이 나오는이유는? 
 	    	  	main.jsp 로 직접 보내준적이 없기때문에 
 			 */
-			
+
 			// Redirect 요청을 다시 보내라 . DB상에 변경이 있을경우 사용한다. 
 			// resp.sendRedirect("main.jsp?userId="+userId + "&password=" + password);  // url을 적어주면된다.
 
@@ -97,10 +132,10 @@ public class LoginServlet extends HttpServlet{
 		}else{
 			resp.sendRedirect("login/login.jsp"); // 폴더 밖이라 폴더까지 적어주는것.
 
-			
-			
-			
-			
+
+
+
+
 		}
 	}
 
