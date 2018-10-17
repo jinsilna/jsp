@@ -1,4 +1,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -14,25 +17,20 @@
 <!-- jquery ui api -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <%request.setCharacterEncoding("utf-8"); %>
-<%
+<%-- <%
 	UserVo user = (UserVo)request.getAttribute("userVo");
 	//String userId = request.getParameter("userId");
 	//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	//String birth = sdf.format(user.getBirth());
 	System.out.println("user : "+ user);
-%>
+%> --%>
 <script>
 	$(document).ready(function() {
 		//개발 과정에서 사용한 기본  값 설정
-		$("#userId").val("<%=user.getUserId()%>");
-		$("#pass").val("<%=user.getPass()%>");
-		$("#name").val("<%=user.getName()%>");
-		$("#add1").val("<%=user.getAdd1()%>");
-		$("#add2").val("<%=user.getAdd2()%>");
-		$("#zip").val("<%=user.getZip()%>");
-		$("#email").val("<%=user.getEmail()%>");
-		$("#tel").val("<%=user.getTel()%>");
+	
+		
 		<%-- $("#birth")val("<%=user.getBirthRomat(user.getBirth())%>"); --%>
+		$("#birth")val("${userVo.birth}");
 		
 		//생일 input datepicker 적용
 		$("#birth").datepicker({
@@ -42,7 +40,7 @@
 			yearRange : "1990:2018"
 		});
 
-		$("#birth").val("<%=user.getBirthRomat(user.getBirth())%>");
+		<%-- $("#birth").val("<%=user.getBirthRomat(user.getBirth())%>"); --%>
 		$("#addrSearchButton").click(function() {
 			//클릭 이벤트가 발생했을 때 실행
 			new daum.Postcode({
@@ -82,14 +80,14 @@
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
 						<div class="col-sm-10">
-							<img alt="" src="<%=user.getProfile()%>">
+							<img alt="" src="${userVo.profile }">
 							<input type="file" id="profile" name="profile" value="">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">사용자 아이디</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="userId" name="userId" 
+							<input type="text" class="form-control" id="userId" name="userId"  value = "${userVo.userId }"
 								placeholder="사용자 아이디" readonly="readonly">
 						</div>
 					</div>
@@ -97,7 +95,7 @@
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">비밀번호</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control" id="pass" name="pass"
+							<input type="password" class="form-control" id="pass" name="pass" value = "${userVo.pass }"
 								placeholder="비밀번호">
 						</div>
 					</div>
@@ -105,14 +103,14 @@
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">이름</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="name" name="name"
+							<input type="text" class="form-control" id="name" name="name"value = "${userVo.name }"
 								placeholder="이름">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">주소</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="add1" name="add1"
+							<input type="text" class="form-control" id="add1" name="add1"value = "${userVo.add1 }"
 								placeholder="주소" readonly="readonly">
 							<!-- 주소 검색 버튼 -->
 							<button id="addrSearchButton" type="button"
@@ -123,7 +121,7 @@
 					<div class="form-group">
 						<label for="pass" class="col-sm-2 control-label">상세주소</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="add2" name="add2"
+							<input type="text" class="form-control" id="add2" name="add2" value = "${userVo.add2 }"
 								placeholder="상세주소">
 						</div>
 					</div>
@@ -132,7 +130,7 @@
 						<label for="pass" class="col-sm-2 control-label">우편번호</label>
 						<div class="col-sm-10">
 							<!--  readonly = 읽기전용으로 편집이 불가능 또다른 속성으로 disable을 사용할수 도 있지만 그렇게 되면 값이 넘어가지 않는다. -->
-							<input type="text" class="form-control" id="zip" name="zip"
+							<input type="text" class="form-control" id="zip" name="zip"value = "${userVo.zip }"
 								placeholder="우편번호" readonly="readonly">
 						</div>
 					</div>
@@ -140,7 +138,7 @@
 					<div class="form-group">
 						<label for="pass" class="col-sm-2 control-label">생년월일</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="birth" name="birth"
+							<input type="text" class="form-control" id="birth" name="birth"value = "${userVo.birth }"
 								placeholder="생년월일">
 						</div>
 					</div>
@@ -148,7 +146,7 @@
 					<div class="form-group">
 						<label for="pass" class="col-sm-2 control-label">이메일</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="email" name="email"
+							<input type="text" class="form-control" id="email" name="email"value = "${userVo.email }"
 								placeholder="이메일 ">
 						</div>
 					</div>
@@ -156,7 +154,7 @@
 					<div class="form-group">
 						<label for="pass" class="col-sm-2 control-label">전화</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="tel" name="tel"
+							<input type="text" class="form-control" id="tel" name="tel"value = "${userVo.tel }"
 								placeholder="전화">
 						</div>
 					</div>

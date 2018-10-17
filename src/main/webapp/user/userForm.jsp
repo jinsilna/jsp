@@ -33,7 +33,7 @@
 			// 생일 input datepiker 적용 
 
 			// 개발 과정에서 사용한 기본 값 설정
-			 $("#userId").val("sally");
+			/*  $("#userId").val("sally");
 			$("#name").val("샐리");
 			$("#addr1").val("대전서구괴정동");
 			$("#addr2").val("경성스포츠 ");
@@ -42,7 +42,7 @@
 			$("#tel").val("01011111111");
 			$("#email").val("skwlstlf@gmail.com");
 			$("#pass").val("gg");
-			
+			 */
 
 			$("#birth").datepicker({
 				yearRange : "1997:2018",

@@ -109,7 +109,7 @@ public class LoginServlet extends HttpServlet{
 			// 이름 [별명]
 
 			HttpSession session = req.getSession();
-			session.setAttribute("userVo",uservo);
+			session.setAttribute("S_USER",uservo);
 
 			/*
 			    main.jsp null이 나왔을 경우 == null이 나오는이유는? 

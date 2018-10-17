@@ -1,4 +1,6 @@
 <%@page import="java.util.List"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -63,7 +65,7 @@
 				
 				
 				<!-- userList loop 이용하여 출력하기  -->
-				<% List<UserVo> userList = (List<UserVo>)request.getAttribute("userPageList");%>
+				<%-- <% List<UserVo> userList = (List<UserVo>)request.getAttribute("userPageList");%>
 				
 				<% 
 				for(UserVo user : userList){ %>
@@ -73,7 +75,16 @@
 					<td><%=user.getName()%></td>
 					<td><%=user.getBirthRomat(user.getBirth())%></td>
 				<%} %>
+				</tr> --%>
+				
+				<c:forEach items="${userPageList }" var = "vo" >
+				<tr class= "userClick">
+					<td>${vo.rnum}</td>
+					<td>${vo.userId}</td>
+					<td>${vo.name}</td>
+					<td><fmt:formatDate value = "${vo.birth}" pattern ="yyyy-MM-dd"/></td>
 				</tr>
+				</c:forEach>
 			</table>
 		</div>
 
@@ -86,16 +97,28 @@
 				        <span aria-hidden="true">&laquo;</span>
 				      	</a>
 		    		</li>
-				<% int pageCnt = (Integer)request.getAttribute("pageCnt"); 
+				<%-- <% int pageCnt = (Integer)request.getAttribute("pageCnt"); 
 					for(int p = 1; p <= pageCnt; p++){
 				%>
 				<li><a href="/userPagingList?page=<%=p%>&pageSize=10"><%=p%></a></li>
 				<%} %>
 				<li>
-				      <a href="/userPagingList?page=<%=pageCnt%>&pageSize=10" aria-label="Next">
+				      <a href="/userPagingList?page=<%=pageCnt%>&pageSize=10" aria-label="Next"> --%>
+				      
+				      <c:forEach begin="1" end = "${pageCnt }" var="p">
+				      <li><a href="/userPagingList?page=${p }&pageSize=10">${p }</a></li>
+				      
+				      </c:forEach>
+				      <li>
+				      <a href="/userPagingList?page=${pageCnt }>&pageSize=10" aria-label="Next"> 
+				      
 				        <span aria-hidden="true">&raquo;</span>
 				      </a>
   				  </li>
+  				  
+  				  
+  				  
+  				  
 			</ul>
 		</div>
 	</div>
