@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kr.or.ddit.board.model.BoardVo;
 import kr.or.ddit.user.dao.UserDao;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.util.PageVo;
@@ -71,6 +72,10 @@ public class UserService implements UserServiceInf {
 		// TODO Auto-generated method stub
 		return userdao.updateUser(userVo);
 		}
+		
+		
+	
+		
 }
 
 

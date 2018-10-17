@@ -9,6 +9,7 @@
 	<typeAliases>
 	  <typeAlias type="kr.or.ddit.user.model.UserVo" alias="userVo"/>
 	  <typeAlias type="kr.or.ddit.util.PageVo" alias="pageVo"/>
+	  <typeAlias type="kr.or.ddit.board.model.BoardVo" alias="boardVo"/>
 	  
 	</typeAliases>
   
@@ -31,5 +32,6 @@
   <mappers>
     <mapper resource="kr/or/ddit/db/temp.xml"/>
     <mapper resource="kr/or/ddit/db/user.xml"/>
+    <mapper resource="kr/or/ddit/db/board.xml"/>
   </mappers>
 </configuration>
