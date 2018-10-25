@@ -16,9 +16,9 @@ public class UserVo {
 	private String profile;
 	private String alias;
 	private int    rnum;
-	
-	
-	
+
+
+
 	public int getRnum() {
 		return rnum;
 	}
@@ -86,7 +86,7 @@ public class UserVo {
 	// 기본생성자를 명시적으로 생성하는것이 나중에 에러 방지에 좋다. 
 	public UserVo(){	
 	}
-	
+
 	public String getUserId() {
 		return userId;
 	}
@@ -111,7 +111,7 @@ public class UserVo {
 	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
-	
+
 	public String getBirthRomat(Date birth){
 		SimpleDateFormat fomat = new SimpleDateFormat("yyyy-MM-dd");
 		String toDate = fomat.format(birth);
@@ -125,7 +125,19 @@ public class UserVo {
 				+ ", email=" + email + ", tel=" + tel + ", birth=" + birth
 				+ ", profle=" + profile + ", alias=" + alias + ", rnum=" + rnum
 				+ "]";
-		}
 	}
+
+	/**
+	 * Method : authPass
+	 * 작성자 : pc07
+	 * 변경이력 :
+	 * @param encryptPass
+	 * @return
+	 * Method 설명 : 비밀번호 검증
+	 */
+	public boolean authPass(String encryptPass) {
+		return getPass().equals(encryptPass);
+	}
+}
 
 

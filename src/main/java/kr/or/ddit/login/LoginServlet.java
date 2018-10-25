@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
+import kr.or.ddit.encrypt.sha.KISA_SHA256;
 import kr.or.ddit.user.dao.UserDao;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserService;
@@ -94,7 +95,11 @@ public class LoginServlet extends HttpServlet{
 		//3-1 main.jsp로 이동 
 		//userId.equals(uservo.getUserId()) && password.equals(uservo.getPass()
 		// userId.equals(uservo.getUserId()) == 이것은 안써도된다 위에서 동일한지 비교했음.
-		if(uservo!= null && password.equals(uservo.getPass())){
+			
+		//****************암호화****************************************
+		
+		String encryptPass = KISA_SHA256.encrypt(password);
+		if(uservo!= null && uservo.authPass(encryptPass)){
 			// resp.sendRedirect("main.jsp");
 
 			//1. session에 사용자 정보 설정 
@@ -139,34 +144,10 @@ public class LoginServlet extends HttpServlet{
 		}
 	}
 
-	private UserServiceInf UserService() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// doPost(req, resp);  // 굳이 똑같이 복사하지않고 객체를 불러오면됌
-		/*resp.setContentType("text/html; charset=utf-8");  //Response 객체 
-		req.setCharacterEncoding("utf-8");  // Request 객체 
-		PrintWriter pw =resp.getWriter();
-
-		pw.println("<!DOCTYPE html>");
-		pw.println("	<html>");
-		pw.println("		<head>");
-		pw.println("			<meta charset=\"UTF-8\">");
-		pw.println("			<title>Insert title here</title>");
-		pw.println("		</head>");
-		pw.println("		<body>");
-
-		//userId : brown / sally
-		String[] userIds = req.getParameterValues("userId");
-		for(String userId : userIds)
-			pw.println("		userId : " + userId + "<br>");
-		pw.println("		password : " + req.getParameter("password") + "<br>");
-		pw.println("		</body>");
-		pw.println("	</html>");*/
+	
 	}
 }
 

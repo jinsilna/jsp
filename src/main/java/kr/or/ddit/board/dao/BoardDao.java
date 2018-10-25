@@ -61,6 +61,7 @@ public class BoardDao implements BoardDaoInf{
 		return boardList;
 	}
 
+
 	@Override
 	public int getBoardCnt() {
 		SqlSessionFactory factory = SqlFactoryBuilder.getSqlSessionFactory();
@@ -68,7 +69,7 @@ public class BoardDao implements BoardDaoInf{
 		// selectOne : 데이터가 한건일때 사용하는것.
 		// selectList : 데이터가 여러건일때
 		// 메소드 인자  :  문자열 = 네임스페이스( 모듈명 )  , 쿼리 아이디 ( 쿼리) 
-		int totalUserCnt= session.selectOne("board.getBoardCnt");
+		int totalUserCnt= session.selectOne("board.getpostCnt");
 		session.close();
 		
 		return totalUserCnt;

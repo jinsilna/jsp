@@ -77,17 +77,14 @@ public class BoardServlet extends HttpServlet {
 
 			// 사용자 아이디가 파라미터로 넘어옴
 			String id = request.getParameter("prod_id");
-			
-			// 사용자 아이디에 해당하는 사용자 정보 조회
-			BoardVo boardvo = boardService.selectBoard(id);
-			
-			System.out.println("쿼리 : " + boardvo.toString());
+		
 			// jsp로 위임하기 위해 사용자 정보를 request에 저장 
-			request.setAttribute("boardvo", boardvo);
+			request.setAttribute("boardvo", id);
 			
 			// 사용자 상세 화면으로 위임 
-			RequestDispatcher rd = request.getRequestDispatcher("/board/boardDetail.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/board/freeboardPagingList.jsp");
 			rd.forward(request, response);
+			
 
 		}
 

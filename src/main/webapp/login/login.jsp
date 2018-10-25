@@ -70,7 +70,6 @@ href="/css/signin.css" rel="stylesheet">
 	  			
 	   --%>
 	   <div class="container">
-           <form class="form-signin" action="/dditLogin" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">userId</label>
         <input type="text" name="userId" id = "userId"class="form-control" placeholder="userId" required autofocus>

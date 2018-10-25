@@ -34,6 +34,8 @@ public class LogoutServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.invalidate(); // 무효화 
 		
+		
+		/* 이부분 로그인 만들고 바꿔야함*/
 		response.sendRedirect("/");
 	}
 

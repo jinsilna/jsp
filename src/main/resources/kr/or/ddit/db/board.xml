@@ -25,7 +25,6 @@
 	<!-- resultType :데이터베이스 결과데이터를 객체에 로드하는 방법을 정의하는 엘리먼트 parameterType -->
 	<select id="selectBoardPageList" resultType="boardVo"
 		parameterType="pageVo">
-
 		select prod_id , prod_name, lprod_nm, prod_insdate ,rnum
 		from lprod
 		left outer join
@@ -37,8 +36,6 @@
 		on (prod_lgu = lprod_gu)
 		where rnum between #{page}*#{pageSize}-(#{pageSize}-1)
 		and #{page}*#{pageSize}
-
-
 	</select>
 
 	<select id="selectBoard" resultType="boardVo" parameterType="String">
