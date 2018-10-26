@@ -43,8 +43,10 @@ public class LoginServlet extends HttpServlet{
 		 */
 		//1.
 		String userId =  req.getParameter("userId");
+		System.out.println(userId);
 		
 		String password = req.getParameter("password");
+		System.out.println(password);
 		String rememberMe = req.getParameter("remember-me");
 		System.out.println("remember-me : " + rememberMe);
 		// remember-me 파라미터를 받아서 syso으로 출력
@@ -85,6 +87,7 @@ public class LoginServlet extends HttpServlet{
 		UserServiceInf service = new UserService();		
 		// 2-2) DB에서 조회환 사용자 비밀번호가 파라미터로 전송된 비밀번호와 동일한지 비교 
 		UserVo uservo  = service.selectUser(userId);
+		System.out.println("민지짱" + uservo);
 		// 2-3) session에 사용자 정보 등록 (as-is : 임의의 userVo 등록: 
 		//                            to-be : DB에서 조회한 userVo) 
 		/*
@@ -135,11 +138,7 @@ public class LoginServlet extends HttpServlet{
 
 			//3-2 login.jsp로 이동 
 		}else{
-			resp.sendRedirect("login/login.jsp"); // 폴더 밖이라 폴더까지 적어주는것.
-
-
-
-
+			resp.sendRedirect("/login/login.jsp"); // 폴더 밖이라 폴더까지 적어주는것.
 
 		}
 	}

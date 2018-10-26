@@ -8,6 +8,7 @@
 <%@include file="/common/basiclb.jsp"%>
 <script type="text/javascript">
 
+
  $(document).ready(function(){
 	console.log("Test"); 
 	 // remember 쿠키값이 Y 이면
@@ -69,22 +70,26 @@ href="/css/signin.css" rel="stylesheet">
 	  			login.jsp
 	  			
 	   --%>
-	   <div class="container">
+	    <div class="container">
+
+      <form class="form-signin" action="/dditLogin" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">userId</label>
-        <input type="text" name="userId" id = "userId"class="form-control" placeholder="userId" required autofocus>
+        <input id="userId" type="text" name="userId" class="form-control" placeholder="userId" required autofocus value="">
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password"  name="password" id = "password" class="form-control" placeholder="Password" required>
-         <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me" name = "remember-me" id = "remember-me"
-            
-            > Remember me
-          </label>
+        <input type="password" name="password" class="form-control" placeholder="password" required value="">
+        <div class="checkbox">
+           <label>
+              <input id="checkbox" type="checkbox" value="Remember me" name="remember-me"/>
+              Remember me
+           </label>
+           <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
-</body>
+
+    </div> <!-- /container -->
+
+  </body>
 </html>
 
 
