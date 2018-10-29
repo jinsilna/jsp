@@ -1,6 +1,5 @@
 package kr.or.ddit.util;
 
-import static org.junit.Assert.assertEquals;
 
 public class StringUtill {
 	/**
