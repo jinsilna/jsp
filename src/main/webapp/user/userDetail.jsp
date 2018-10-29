@@ -41,10 +41,11 @@
 							 
 							 <c:choose>
 								 <c:when test="${userVo.profile == null}">
-								 	<img src = '/profile/noimage.png'/>
+								 	<img src = '/profile/noimage.png'/> 
 								 </c:when> 
 								 <c:otherwise>
-								 	<img src = "${userVo.profile}"/>
+								 	<%-- <img src = "${userVo.profile}"/> --%>
+								 	<img src='/fileDownloadServlet?userId=${userVo.userId}'/>
 								 </c:otherwise>
 							 </c:choose>
 							

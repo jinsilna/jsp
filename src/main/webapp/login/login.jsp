@@ -71,13 +71,12 @@ href="/css/signin.css" rel="stylesheet">
 	  			
 	   --%>
 	    <div class="container">
-
-      <form class="form-signin" action="/dditLogin" method="post">
+    	<form class="form-signin" action="/dditLogin" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">userId</label>
-        <input id="userId" type="text" name="userId" class="form-control" placeholder="userId" required autofocus value="">
+        <input id="userId" type="text"  value ="sally" name="userId" class="form-control" placeholder="userId" required autofocus value="">
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" class="form-control" placeholder="password" required value="">
+        <input type="password" name="password" class="form-control" value ="sallypass" placeholder="password" required value="">
         <div class="checkbox">
            <label>
               <input id="checkbox" type="checkbox" value="Remember me" name="remember-me"/>
@@ -86,9 +85,7 @@ href="/css/signin.css" rel="stylesheet">
            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         </div>
       </form>
-
     </div> <!-- /container -->
-
   </body>
 </html>
 

@@ -1,9 +1,6 @@
 package kr.or.ddit.login;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Date;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,10 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
-import kr.or.ddit.encrypt.sha.KISA_SHA256;
-import kr.or.ddit.user.dao.UserDao;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserService;
 import kr.or.ddit.user.service.UserServiceInf;
@@ -33,6 +27,14 @@ public class LoginServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
+		String newParameter = req.getParameter("newParameter");
+		System.out.println(" newParameter : " + newParameter);
+		
+		/*
+			Map<String,String[]> reqMap = req.getParameterMap();
+			reqMap.put("newParameter", new String[]{"newValue"});
+		*/
 		/*
 		   1. 사용자 아이디 , 비밀번호를 request객체에서 받아온다.
 		   2. DB에서 조회해온 아이디, 비밀번호를 체크한다.
@@ -96,13 +98,14 @@ public class LoginServlet extends HttpServlet{
 				private final String PASSWORD = "pass1234";
 		 */
 		//3-1 main.jsp로 이동 
-		//userId.equals(uservo.getUserId()) && password.equals(uservo.getPass()
+		if(userId.equals(uservo.getUserId()) && password.equals(uservo.getPass())){
+			
 		// userId.equals(uservo.getUserId()) == 이것은 안써도된다 위에서 동일한지 비교했음.
 			
 		//****************암호화****************************************
-		
+	/*	
 		String encryptPass = KISA_SHA256.encrypt(password);
-		if(uservo!= null && uservo.authPass(encryptPass)){
+		if(uservo!= null && uservo.authPass(encryptPass)){*/
 			// resp.sendRedirect("main.jsp");
 
 			//1. session에 사용자 정보 설정 
