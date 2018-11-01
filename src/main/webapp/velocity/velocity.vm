@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title> velocity </title>
+	</head>
+	
+	<body>
+		application.applicationAttr : $!application.applicationAttr 	<br>
+		session.sessionAttr 		: $!session.sessionAttr				<br>
+		request.requestAttr			: $!request.requestAttr				<br>
+		
+		#foreach($ranger in $!rangers)
+			$ranger <br>
+		#end
+		
+		#if($!rangers.size()>0)
+			hello world 안녕하세용 
+		#end
+	</body>
+	
+</html>
